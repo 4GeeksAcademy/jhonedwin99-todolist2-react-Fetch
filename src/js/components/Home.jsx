@@ -35,7 +35,7 @@ const Home = () => {
 				.then(resp => {
 					console.log(resp.ok);
 					obtenerTareas();
-					console.log(resp.status);
+					setInputValue("")
 					return resp.json();
 				})
 				.then(data => {
