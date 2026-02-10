@@ -57,6 +57,24 @@ const Home = () => {
 		}
 	};
 
+	const clearALL = async () => {
+		try {
+			await fetch("https://playground.4geeks.com/todo/users/jhonedwin99",{
+				method: "DELETE",
+			});
+			await fetch("https://playground.4geeks.com/todo/users/jhonedwin99",{
+				method: "POST",
+				headers: {
+					"content-Type": "application/json",
+				},
+				body: JSON.stringify([]),
+			});
+			setTasks([]);
+		} catch (error) {
+			console.error(error);
+		}
+	};
+
 	useEffect(() => {
 		obtenerTareas()
 	}, []);
@@ -97,6 +115,12 @@ const Home = () => {
 					{tasks.length} tarea{tasks.length !== 1 && "s"}
 				</p>
 			)}
+			{tasks.length > 0 && (
+				<button onClick={clearALL}>
+					eliminar todas
+				</button>
+			)}
+
 		</div>
 	);
 };
